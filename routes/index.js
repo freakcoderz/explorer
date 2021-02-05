@@ -195,6 +195,33 @@ router.get('/richlist', function(req, res) {
   }
 });
 
+router.get('/coininfo', function(req, res) {
+  if (settings.display.coininfo === false) {
+    route_get_index(res, null);
+    return;
+  }
+
+  db.get_stats(settings.coin, function(stats){
+    db.get_cg(settings.coingecko.ticker, function(cg) {
+
+            var data = {
+              active: 'coininfo',
+              coininfo: settings.coininfo,
+              lastPriceBtc: formatCurrency(stats.last_price, { maxFraction: 10 }),
+              lastPriceUsd: cg.price_usd ? formatCurrency(cg.price_usd, { maxFraction: 8 }) : null,
+              pricePercChange24h: cg.percent_change_24h,
+              marketCapUsd: formatCurrency(stats.supply * cg.price_usd, { maxFraction: 2 }),
+              cg: cg,
+              blockCount24h: -1,
+              avgBlockTime: -1,
+              supply: formatNum(stats.supply, { maxFraction: 4 }),
+            };
+
+            res.render('coininfo', data);
+    });
+  });
+});
+
 router.get('/movement', function(req, res) {
   res.render('movement', {active: 'movement', flaga: settings.movement.low_flag, flagb: settings.movement.high_flag, min_amount:settings.movement.min_amount});
 });

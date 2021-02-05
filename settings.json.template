@@ -76,6 +76,7 @@
     "search": true,
     "movement": true,
     "network": true,
+    "coininfo": false,
     // Settings to switch navbar theme, leaving both false will use the 'primary' navbar
     "navbar_dark": false,
     "navbar_light": false
@@ -126,6 +127,16 @@
     "min_amount": 100,
     "low_flag": 1000,
     "high_flag": 5000
+  },
+
+    // Coin info page
+  "coininfo": {
+    "basic_info_links": [
+      ["Github", "https://github.com/"],
+      [],
+      ["Twitter", "https://twitter.com"],
+      [],
+    ],
   },
 
   // twitter, facebook, googleplus, youtube

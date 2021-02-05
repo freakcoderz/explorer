@@ -157,6 +157,11 @@ html
               a.nav-link.loading(href='/markets/'+settings.markets.default)
                 span.fa.fa-line-chart
                 span.menu-text #{settings.locale.menu_markets}
+          if settings.display.coininfo == true
+              li#coininfo
+                a.navbar-link.loading(href='/coininfo')
+                  span.fa.fa-vcard-o
+                  span.menu-text #{settings.locale.menu_coininfo}
           if settings.display.api == true
             li#info
               a.nav-link(href='/info')
